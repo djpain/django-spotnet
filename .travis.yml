@@ -9,11 +9,11 @@ env:
   - DJANGO=1.4
 install:
   - pip install -q Django==$DJANGO
-  - pip install pep8
+  - pip install pycodestyle
   - pip install https://github.com/dcramer/pyflakes/tarball/master
   - pip install -q -e .
 before_script:
-  - 'pep8 --exclude=migrations --ignore=E501,E272,E221,E241 spotnet'
+  - 'pycodestyle --exclude=migrations --ignore=E501,E272,E221,E241 spotnet'
   - '[ "$TRAVIS_PYTHON_VERSION" \> 3 ] || pyflakes -x W spotnet'
 script:
   - python example_project/manage.py test
